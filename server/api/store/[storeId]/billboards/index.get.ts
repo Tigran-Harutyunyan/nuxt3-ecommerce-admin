@@ -25,8 +25,9 @@ export default defineEventHandler(async (event) => {
             orderBy: {
               createdAt: 'desc'
             }
-          });
-          return billboards;
+        });
+        
+        return Array.isArray(billboards)  ? billboards : [billboards];
 
     } catch (error) {
         return {
