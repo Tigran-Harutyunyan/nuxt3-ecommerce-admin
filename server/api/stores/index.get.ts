@@ -1,23 +1,22 @@
-import { clerkClient } from 'h3-clerk'
 import prismadb from '@/lib/prismadb';
 
 export default defineEventHandler(async (event) => {
-    const { auth } =  event.context; 
- 
+    const { auth } = event.context;
+
     if (!auth.userId) {
         setResponseStatus(event, 403)
         return ''
     }
 
-    try { 
+    try {
 
         const stores = await prismadb.store.findMany({
             where: {
-              userId:auth.userId,
+                userId: auth.userId,
             }
-         });
+        });
 
-      return stores;
+        return stores;
 
     } catch (error) {
         return {

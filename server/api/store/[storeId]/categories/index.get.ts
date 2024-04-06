@@ -1,8 +1,7 @@
-import { clerkClient } from 'h3-clerk'
 import prismadb from '@/lib/prismadb';
 
 export default defineEventHandler(async (event) => {
-    const { auth } =  event.context;
+    const { auth } = event.context;
     const params = await event.context.params
 
     if (!auth.userId) {
@@ -10,18 +9,18 @@ export default defineEventHandler(async (event) => {
         return ''
     }
 
-    if (!params.storeId) {
-        return  createError({
+    if (!params?.storeId) {
+        return createError({
             status: 400,
             statusMessage: 'Store ID is required'
         });
-    } 
+    }
 
     try {
         const categories = await prismadb.category.findMany({
             where: {
-              storeId: params.storeId
-            }, 
+                storeId: params.storeId
+            },
             include: {
                 billboard: true,
             },
@@ -30,7 +29,7 @@ export default defineEventHandler(async (event) => {
             }
         });
 
-        return Array.isArray(categories)  ? categories : [categories];
+        return Array.isArray(categories) ? categories : [categories];
 
     } catch (error) {
         return {

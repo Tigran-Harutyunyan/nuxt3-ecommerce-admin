@@ -1,39 +1,38 @@
-import { clerkClient } from 'h3-clerk'
 import prismadb from '@/lib/prismadb';
 
 export default defineEventHandler(async (event) => {
-    const { auth } =  event.context;
+    const { auth } = event.context;
     const params = await event.context.params
-    const { label, imageUrl} = await readBody(event);
+    const { label, imageUrl } = await readBody(event);
 
     if (!auth.userId) {
         setResponseStatus(event, 403)
         return ''
     }
 
-    if (!params.storeId) {
-        return  createError({
+    if (!params?.storeId) {
+        return createError({
             status: 400,
             statusMessage: 'Store ID is required'
         });
     }
 
     if (!label) {
-         return  createError({
+        return createError({
             status: 400,
             statusMessage: 'Label is required'
         });
     }
-  
+
     if (!imageUrl) {
-        return  createError({
+        return createError({
             status: 400,
             statusMessage: 'Image URL is required'
         });
     }
-  
+
     if (!params.billboardId) {
-        return  createError({
+        return createError({
             status: 400,
             statusMessage: 'Billboard ID is required'
         });
@@ -42,28 +41,28 @@ export default defineEventHandler(async (event) => {
     try {
         const storeByUserId = await prismadb.store.findFirst({
             where: {
-              id: params.storeId,
-              userId: auth.userId,
+                id: params.storeId,
+                userId: auth.userId,
             }
-          });
-      
-          if (!storeByUserId) {
-            return  createError({
+        });
+
+        if (!storeByUserId) {
+            return createError({
                 status: 405,
                 statusMessage: 'Unauthorized'
             });
-           }
-      
-          const billboard = await prismadb.billboard.update({
+        }
+
+        const billboard = await prismadb.billboard.update({
             where: {
-              id: params.billboardId,
+                id: params.billboardId,
             },
             data: {
-              label,
-              imageUrl
+                label,
+                imageUrl
             }
-          });
-          return billboard
+        });
+        return billboard
     } catch (error) {
         return {
             error: error?.message

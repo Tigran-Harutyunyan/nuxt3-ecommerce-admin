@@ -1,8 +1,7 @@
-import { clerkClient } from 'h3-clerk'
 import prismadb from '@/lib/prismadb';
 
 export default defineEventHandler(async (event) => {
-    const { auth } =  event.context;
+    const { auth } = event.context;
     const params = await event.context.params
 
     if (!auth.userId) {
@@ -10,22 +9,22 @@ export default defineEventHandler(async (event) => {
         return ''
     }
 
-    if (!params.storeId) {
-        return  createError({
+    if (!params?.storeId) {
+        return createError({
             status: 400,
             statusMessage: 'Store ID is required'
         });
-    } 
+    }
 
     try {
-        const store = await prismadb.store.findFirst({ 
+        const store = await prismadb.store.findFirst({
             where: {
-              id: params.storeId,
-              userId:auth.userId ,
+                id: params.storeId,
+                userId: auth.userId,
             }
-           });
+        });
 
-          return store;
+        return store;
 
     } catch (error) {
         return {
