@@ -1,5 +1,10 @@
 <script setup lang="ts">
-import { Check, ChevronsUpDown, PlusCircle, Store } from "lucide-vue-next";
+import {
+  Check,
+  ChevronsUpDown,
+  PlusCircle,
+  Store as StoreIcon,
+} from "lucide-vue-next";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -18,27 +23,23 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { useModals } from "@/store/modals";
+import type { Store } from "@/types";
 
 const { onOpen } = useModals();
 
 const isOpen = ref(false);
 
-interface Store {
-  id: string;
-  name: string;
-  userId: string;
-  createdAt: Date;
-  updatedAt: Date;
-}
-
 interface StoreSwitcherProps {
   items: Store[];
   className?: string;
 }
-const { items, className } = defineProps<StoreSwitcherProps>();
+
+const props = defineProps<StoreSwitcherProps>();
+
+const { items, className } = toRefs(props);
 
 const formattedItems = computed(() => {
-  return items.map((item) => ({
+  return items.value.map((item) => ({
     label: item.name,
     value: item.id,
   }));
@@ -74,7 +75,7 @@ const onStoreSelect = (store: { value: string; label: string }) => {
         aria-label="Select a store"
         :class="cn('w-[200px] justify-between', className)"
       >
-        <Store class="mr-2 h-4 w-4" />
+        <StoreIcon class="mr-2 h-4 w-4" />
         {{ currentStore?.label }}
         <ChevronsUpDown class="ml-auto h-4 w-4 shrink-0 opacity-50" />
       </Button>
