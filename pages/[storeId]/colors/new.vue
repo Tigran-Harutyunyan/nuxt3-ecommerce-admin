@@ -1,0 +1,15 @@
+<script setup lang="ts">
+import ColorForm from "@/components/colors/ColorForm.vue";
+
+definePageMeta({
+  layout: "dashboard",
+});
+</script>
+
+<template>
+  <div class="flex-col">
+    <div class="flex-1 space-y-4 p-8 pt-6">
+      <ColorForm :initialValues="null" />
+    </div>
+  </div>
+</template>
