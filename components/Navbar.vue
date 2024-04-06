@@ -1,17 +1,17 @@
 <script setup lang="ts">
 import { UserButton } from "vue-clerk";
 import { useMain } from "@/store/main";
+import type { Store } from "@prisma/client";
 
-const { storeUpdateCounter } = storeToRefs(useMain());
+const { storeUpdateTrigger } = storeToRefs(useMain());
 
-const {
-  data: stores,
-  refresh,
-  pending,
-} = await useLazyAsyncData("stores", () => $fetch("/api/stores"));
+const { data: stores, refresh } = await useLazyAsyncData<Store[]>(
+  "stores",
+  () => $fetch("/api/stores")
+);
 
 watch(
-  () => storeUpdateCounter.value,
+  () => storeUpdateTrigger.value,
   () => {
     refresh();
   }
@@ -23,7 +23,7 @@ watch(
     <div class="flex h-16 items-center px-4">
       <StoreSwitcher
         :items="stores"
-        :key="storeUpdateCounter"
+        :key="storeUpdateTrigger"
         v-if="stores && Array.isArray(stores)"
       />
       <MainNav className="mx-6" />

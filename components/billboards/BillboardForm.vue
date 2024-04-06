@@ -50,12 +50,12 @@ const formSchema = toTypedSchema(
       .string({
         required_error: "Label is required",
       })
-      .min(1),
+      .min(1, "Please enter a valid label"),
     imageUrl: z
       .string({
         required_error: "Image is required",
       })
-      .min(1),
+      .min(1, "Please choose an image"),
   })
 );
 

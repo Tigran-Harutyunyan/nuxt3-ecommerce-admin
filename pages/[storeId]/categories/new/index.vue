@@ -15,7 +15,7 @@ const { data: billboards } = useAsyncData("billboards", () =>
 <template>
   <div class="flex-col">
     <div class="flex-1 space-y-4 p-8 pt-6">
-      <CategoryForm :initialValues="{}" :billboards="billboards" />
+      <CategoryForm :initialValues="null" :billboards="billboards" />
     </div>
   </div>
 </template>

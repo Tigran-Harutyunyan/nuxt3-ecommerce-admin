@@ -8,7 +8,7 @@ import { useMain } from "@/store/main";
 import CategoriesClient from "@/components/categories/Client.vue";
 import type { CategoryColumn } from "@/types";
 
-const { categoryUpdateCounter } = storeToRefs(useMain());
+const { entityUpdateTrigger } = storeToRefs(useMain());
 
 const storeId = useRoute().params.storeId;
 
@@ -31,7 +31,7 @@ const formattedCategories = computed<CategoryColumn[]>(() => {
 });
 
 watch(
-  () => categoryUpdateCounter.value,
+  () => entityUpdateTrigger.value,
   () => {
     refresh();
   }

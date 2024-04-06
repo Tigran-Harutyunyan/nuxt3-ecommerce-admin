@@ -30,7 +30,7 @@ import { useModals } from "@/store/modals";
 
 interface CategoryFormProps {
   initialValues: Category | null;
-  billboards: Billboard[];
+  billboards: Billboard[] | null;
 }
 
 const props = defineProps<CategoryFormProps>();
@@ -58,12 +58,12 @@ const formSchema = toTypedSchema(
       .string({
         required_error: "Name is required",
       })
-      .min(1),
+      .min(1, "Please enter a valid name"),
     billboardId: z
       .string({
         required_error: "Billboard is required",
       })
-      .min(1),
+      .min(1, "Please enter a valid Billboard name"),
   })
 );
 
@@ -176,7 +176,7 @@ const onSubmit = form.handleSubmit(async (values) => {
       <FormField v-slot="{ componentField }" name="billboardId">
         <FormItem>
           <FormLabel>Billboard</FormLabel>
-          <FormControl>
+          <FormControl v-if="billboards">
             <Select :disabled="isLoading" v-bind="componentField">
               <FormControl>
                 <SelectTrigger>

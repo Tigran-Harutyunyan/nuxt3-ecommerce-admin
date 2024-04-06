@@ -27,7 +27,7 @@ const { type, isOpen } = storeToRefs(useModals());
 
 const { onClose, onOpen } = useModals();
 
-const { setBillboardUpdate } = useMain();
+const { updateEntityTrigger } = useMain();
 
 const isModalOpen = computed(() => {
   return isOpen.value && type.value === "alert";
@@ -44,7 +44,7 @@ const onConfirm = async () => {
     );
 
     if (response?.id) {
-      setBillboardUpdate();
+      updateEntityTrigger();
       toast.success("Billboard deleted.");
     }
   } catch (error) {

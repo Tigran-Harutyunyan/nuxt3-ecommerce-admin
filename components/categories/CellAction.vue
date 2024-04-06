@@ -27,7 +27,7 @@ const { type, isOpen } = storeToRefs(useModals());
 
 const { onClose, onOpen } = useModals();
 
-const { setCategoryUpdate } = useMain();
+const { updateEntityTrigger } = useMain();
 
 const isModalOpen = computed(() => {
   return isOpen.value && type.value === "alert";
@@ -44,7 +44,7 @@ const onConfirm = async () => {
     );
 
     if (response?.id) {
-      setCategoryUpdate();
+      updateEntityTrigger();
       toast.success("Category deleted.");
     }
   } catch (error) {
@@ -59,7 +59,7 @@ const onConfirm = async () => {
 
 const onCopy = (id: string) => {
   navigator.clipboard.writeText(id);
-  toast.success("Billboard ID copied to clipboard.");
+  toast.success("Category ID copied to clipboard.");
 };
 </script>
 

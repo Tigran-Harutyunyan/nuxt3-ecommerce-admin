@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import CategoryForm from "@/components/categories/CategoryForm.vue";
+import type { Category, Billboard } from "@prisma/client";
 
 definePageMeta({
   layout: "dashboard",
@@ -7,11 +8,11 @@ definePageMeta({
 
 const params = useRoute().params;
 
-const { data: category } = await useAsyncData("category", () =>
+const { data: category } = await useAsyncData<Category>("category", () =>
   $fetch(`/api/store/${params.storeId}/categories/${params.categoryId}`)
 );
 
-const { data: billboards } = await useAsyncData("billboards", () =>
+const { data: billboards } = await useAsyncData<Billboard[]>("billboards", () =>
   $fetch(`/api/store/${params.storeId}/billboards`)
 );
 </script>

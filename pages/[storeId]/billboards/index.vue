@@ -8,7 +8,7 @@ import { useMain } from "@/store/main";
 import BillboardClient from "@/components/billboards/Client.vue";
 import type { BillboardColumn } from "@/types";
 
-const { billboardUpdateCounter } = storeToRefs(useMain());
+const { entityUpdateTrigger } = storeToRefs(useMain());
 
 const storeId = useRoute().params.storeId;
 
@@ -30,7 +30,7 @@ const formattedBillboards = computed<BillboardColumn[]>(() => {
 });
 
 watch(
-  () => billboardUpdateCounter.value,
+  () => entityUpdateTrigger.value,
   () => {
     refresh();
   }

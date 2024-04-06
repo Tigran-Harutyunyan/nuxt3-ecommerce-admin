@@ -24,7 +24,7 @@ import type { Store } from "@/types";
 import { useModals } from "@/store/modals";
 import { useMain } from "@/store/main";
 
-const { setStoreUpdate } = useMain();
+const { updateEntityTrigger } = useMain();
 
 const { type, isOpen } = storeToRefs(useModals());
 
@@ -62,7 +62,7 @@ const onDelete = async () => {
     await await $fetch(`/api/stores/${route.params.storeId}`, {
       method: "delete",
     });
-    setStoreUpdate();
+    updateEntityTrigger();
     navigateTo("/");
     toast.success("Store deleted.");
   } catch (error: any) {
@@ -82,7 +82,7 @@ const onSubmit = form.handleSubmit(async (values) => {
         name: values.name,
       },
     });
-    setStoreUpdate();
+    updateEntityTrigger();
     toast.success("Store updated.");
   } catch (error) {
     toast.error(error?.message);
