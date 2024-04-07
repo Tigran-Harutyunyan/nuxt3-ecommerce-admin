@@ -1,22 +1,24 @@
 <script setup lang="ts">
-import type { VariantProps } from 'class-variance-authority'
-import { Primitive, type PrimitiveProps } from 'radix-vue'
-import { buttonVariants } from '.'
-import { cn } from '@/lib/utils'
+import type { VariantProps } from "class-variance-authority";
+import { Primitive, type PrimitiveProps } from "radix-vue";
+import { buttonVariants } from ".";
+import { cn } from "@/lib/utils";
+import { Loader2 } from "lucide-vue-next";
 
 interface ButtonVariantProps extends VariantProps<typeof buttonVariants> {}
 
 interface Props extends PrimitiveProps {
-  variant?: ButtonVariantProps['variant']
-  size?: ButtonVariantProps['size']
-  as?: string
+  variant?: ButtonVariantProps["variant"];
+  size?: ButtonVariantProps["size"];
+  as?: string;
+  loading?: boolean;
 }
 
 withDefaults(defineProps<Props>(), {
-  variant: 'default',
-  size: 'default',
-  as: 'button',
-})
+  variant: "default",
+  size: "default",
+  as: "button",
+});
 </script>
 
 <template>
@@ -25,6 +27,8 @@ withDefaults(defineProps<Props>(), {
     :as-child="asChild"
     :class="cn(buttonVariants({ variant, size }), $attrs.class ?? '')"
   >
-    <slot />
+    <Loader2 class="w-4 h-4 mr-2 animate-spin" v-if="loading" />
+
+    <slot v-else />
   </Primitive>
 </template>
