@@ -79,6 +79,7 @@ const isLoading = ref(false);
 
 const onDelete = async () => {
   onClose();
+
   try {
     isLoading.value = true;
 
@@ -124,7 +125,9 @@ const onSubmit = form.handleSubmit(async (values) => {
 
     if (response?.id) {
       toast.success(toastMessage);
-      navigateTo(`/${route.params.storeId}/categories`);
+      if (addMode) {
+        navigateTo(`/${route.params.storeId}/categories`);
+      }
     }
   } catch (error) {
     toast.error(error?.message);
@@ -200,7 +203,12 @@ const onSubmit = form.handleSubmit(async (values) => {
       </FormField>
     </div>
 
-    <Button :disabled="isLoading" class="ml-auto" type="submit">
+    <Button
+      :disabled="isLoading"
+      :loading="isLoading"
+      class="ml-auto"
+      type="submit"
+    >
       {{ action }}
     </Button>
   </form>

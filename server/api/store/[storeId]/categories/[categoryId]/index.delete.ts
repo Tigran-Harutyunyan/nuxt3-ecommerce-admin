@@ -24,7 +24,7 @@ export default defineEventHandler(async (event) => {
     }
 
     try {
-        console.log('hello')
+
         const category = await prismadb.category.delete({
             where: {
                 id: params.categoryId,

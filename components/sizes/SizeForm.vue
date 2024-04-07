@@ -84,6 +84,7 @@ const onDelete = async () => {
 
     if (response?.id) {
       navigateTo(`/${route.params.storeId}/sizes`);
+
       toast.success("Category deleted.");
     }
   } catch (error: any) {
@@ -115,7 +116,9 @@ const onSubmit = form.handleSubmit(async (values) => {
 
     if (response?.id) {
       toast.success(toastMessage);
-      navigateTo(`/${route.params.storeId}/sizes`);
+      if (addMode) {
+        navigateTo(`/${route.params.storeId}/sizes`);
+      }
     }
   } catch (error) {
     toast.error(error?.message);
@@ -179,7 +182,12 @@ const onSubmit = form.handleSubmit(async (values) => {
       </FormField>
     </div>
 
-    <Button :disabled="isLoading" class="ml-auto" type="submit">
+    <Button
+      :disabled="isLoading"
+      :loading="isLoading"
+      class="ml-auto"
+      type="submit"
+    >
       {{ action }}
     </Button>
   </form>

@@ -59,9 +59,11 @@ const form = useForm({
 const onDelete = async () => {
   try {
     isLoading.value = true;
+
     await await $fetch(`/api/stores/${route.params.storeId}`, {
       method: "delete",
     });
+
     updateEntityTrigger();
     navigateTo("/");
     toast.success("Store deleted.");
@@ -128,7 +130,12 @@ const onSubmit = form.handleSubmit(async (values) => {
         </FormItem>
       </FormField>
     </div>
-    <Button :disabled="isLoading" class="ml-auto" type="submit">
+    <Button
+      :disabled="isLoading"
+      :loading="isLoading"
+      class="ml-auto"
+      type="submit"
+    >
       Save changes
     </Button>
   </form>

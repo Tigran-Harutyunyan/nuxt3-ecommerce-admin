@@ -55,7 +55,7 @@ const formSchema = toTypedSchema(
       .string({
         required_error: "Image is required",
       })
-      .min(1, "Please choose an image"),
+      .min(1, "Image is required"),
   })
 );
 
@@ -116,7 +116,10 @@ const onSubmit = form.handleSubmit(async (values) => {
 
     if (response?.id) {
       toast.success(toastMessage);
-      navigateTo(`/${route.params.storeId}/billboards`);
+
+      if (addMode) {
+        navigateTo(`/${route.params.storeId}/billboards`);
+      }
     }
   } catch (error) {
     toast.error(error?.message);
@@ -127,6 +130,10 @@ const onSubmit = form.handleSubmit(async (values) => {
 
 const onImgUpload = (src: string) => {
   form.setFieldValue("imageUrl", src);
+};
+
+const onRemoveImage = (url: string) => {
+  form.setFieldValue("imageUrl", "");
 };
 </script>
 
@@ -160,8 +167,11 @@ const onImgUpload = (src: string) => {
         <FormControl>
           <ImageUpload
             :disabled="isLoading"
-            :value="componentField.modelValue"
+            :images="
+              componentField.modelValue ? [componentField.modelValue] : []
+            "
             @change="onImgUpload"
+            @remove="onRemoveImage"
           />
         </FormControl>
         <FormMessage />
@@ -184,7 +194,12 @@ const onImgUpload = (src: string) => {
       </FormField>
     </div>
 
-    <Button :disabled="isLoading" class="ml-auto" type="submit">
+    <Button
+      :disabled="isLoading"
+      :loading="isLoading"
+      class="ml-auto"
+      type="submit"
+    >
       {{ action }}
     </Button>
   </form>
