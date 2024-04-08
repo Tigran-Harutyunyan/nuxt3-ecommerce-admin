@@ -2,9 +2,6 @@
 import { Plus } from "lucide-vue-next";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import DataTable from "@/components/ui/DataTable.vue";
-import Heading from "@/components/ui/Heading.vue";
-import ApiList from "@/components/ui/ApiList.vue";
 import type { SizeColumn } from "@/types";
 import { type ColumnDef } from "@tanstack/vue-table";
 import CellAction from "./CellAction.vue";

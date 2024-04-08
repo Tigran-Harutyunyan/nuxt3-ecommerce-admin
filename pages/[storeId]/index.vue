@@ -8,7 +8,6 @@ import { CreditCard, DollarSign, Package } from "lucide-vue-next";
 import { Separator } from "@/components/ui/separator";
 import Overview from "@/components/dashboard/Overview.vue";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import Heading from "@/components/ui/Heading.vue";
 
 import { formatter } from "@/lib/utils";
 

@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import ApiAlert from "@/components/ui/ApiAlert.vue";
-
 interface ApiListProps {
   entityName: string;
   entityIdName: string;

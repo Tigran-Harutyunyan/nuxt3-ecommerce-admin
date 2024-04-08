@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { Button } from "@/components/ui/button";
-import Modal from "@/components/ui/Modal.vue";
 
 interface AlertModalProps {
   loading: boolean;

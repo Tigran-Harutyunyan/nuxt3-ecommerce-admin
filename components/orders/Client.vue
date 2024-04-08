@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import { Separator } from "@/components/ui/separator";
-import DataTable from "@/components/ui/DataTable.vue";
-import Heading from "@/components/ui/Heading.vue";
 import type { OrderColumn } from "@/types";
 import { type ColumnDef } from "@tanstack/vue-table";
 

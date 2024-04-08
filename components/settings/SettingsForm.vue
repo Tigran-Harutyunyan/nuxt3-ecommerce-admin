@@ -16,8 +16,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Separator } from "@/components/ui/separator";
-import Heading from "@/components/ui/Heading.vue";
-import ApiAlert from "@/components/ui/ApiAlert.vue";
 import AlertModal from "@/components/modals/AlertModal.vue";
 
 import type { Store } from "@/types";

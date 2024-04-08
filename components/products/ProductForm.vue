@@ -26,7 +26,6 @@ import {
 } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 
-import Heading from "@/components/ui/Heading.vue";
 import AlertModal from "@/components/modals/AlertModal.vue";
 import { useModals } from "@/store/modals";
 

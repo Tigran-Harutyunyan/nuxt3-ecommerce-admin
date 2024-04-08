@@ -7,7 +7,6 @@ import { toast } from "vue-sonner";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import Modal from "@/components/ui/Modal.vue";
 import {
   Form,
   FormControl,
