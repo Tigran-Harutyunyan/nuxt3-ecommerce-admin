@@ -3,15 +3,18 @@ import { Button } from "@/components/ui/button";
 import { ImagePlus, Trash } from "lucide-vue-next";
 
 interface ImageUploadProps {
-  value: string;
+  images: string[];
   disabled?: boolean;
+  multiple?: boolean;
 }
 
-const props = defineProps<ImageUploadProps>();
+const props = withDefaults(defineProps<ImageUploadProps>(), {
+  multiple: false,
+});
 
-const { value, disabled } = toRefs(props);
+const { images, disabled, multiple } = toRefs(props);
 
-const emit = defineEmits(["change"]);
+const emit = defineEmits(["change", "remove"]);
 
 const uploadTest = ref("uw-test");
 
@@ -40,10 +43,6 @@ const handleUpload = (res: Response) => {
     emit("change", res.value?.info?.secure_url);
   }
 };
-
-const images = computed(() => {
-  return value.value ? [value.value] : [];
-});
 </script>
 
 <template>
@@ -57,7 +56,7 @@ const images = computed(() => {
         <div class="z-10 absolute top-2 right-2">
           <Button
             type="button"
-            @click="$emit('change', '')"
+            @click="$emit('remove', url)"
             variant="destructive"
             size="sm"
           >
@@ -71,7 +70,10 @@ const images = computed(() => {
     <CldUploadWidget
       v-slot="{ open }"
       :uploadPreset="uploadTest"
-      :options="{ maxFiles: 1 }"
+      :multiple="multiple"
+      :options="{
+        maxFiles: multiple ? 10 : 1,
+      }"
       @upload="handleUpload"
     >
       <Button
@@ -81,7 +83,7 @@ const images = computed(() => {
         @click="open"
       >
         <ImagePlus class="h-4 w-4 mr-2" />
-        Upload an Image
+        Upload an image{{ multiple ? "(s)" : "" }}
       </Button>
     </CldUploadWidget>
   </div>
