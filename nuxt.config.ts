@@ -1,7 +1,16 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ['@nuxtjs/tailwindcss', 'shadcn-nuxt', '@nuxtjs/google-fonts', '@pinia/nuxt', '@nuxt/image', '@vee-validate/nuxt','@nuxtjs/cloudinary'],
+  modules: [
+    '@nuxtjs/tailwindcss',
+    'shadcn-nuxt',
+    '@nuxtjs/google-fonts',
+    '@pinia/nuxt',
+    '@nuxt/image',
+    '@vee-validate/nuxt',
+    '@nuxtjs/cloudinary',
+    '@fixers/nuxt-stripe'
+  ],
 
   shadcn: {
     /**
@@ -23,16 +32,8 @@ export default defineNuxtConfig({
       appUrl: process.env.NUXT_PUBLIC_APP_URL
     },
     clerkSecretKey: process.env.CLERK_SECRET_KEY,
+    storeUrl: process.env.FRONTEND_STORE_URL,
+    stripeKey: process.env.STRIPE_SECRET_KEY,
+    stripeWebhookSecret: process.env.STRIPE_WEBHOOK_SECRET,
   },
-  googleFonts: {
-    subsets: 'latin',
-    families: {
-      Poppins: {
-        wght: [600],
-      },
-    }
-  },
-  image: {
-
-  }
-})  
+})
