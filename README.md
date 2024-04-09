@@ -2,7 +2,7 @@
 
 [Live Demo - Site](https://nuxt3-ecommerce-store.vercel.app)
 
-[Live Demo - Admin](https://nuxt3-ecommerce-admin.vercel.app) https://github.com/Tigran-Harutyunyan/nuxt3-ecommerce-admin
+[Live Demo - Admin](https://nuxt3-ecommerce-admin.vercel.app)
 
 Features:
 
