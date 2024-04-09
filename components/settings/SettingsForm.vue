@@ -86,8 +86,11 @@ const onSubmit = form.handleSubmit(async (values) => {
         name: values.name,
       },
     });
-    updateEntityTrigger();
-    toast.success("Store updated.");
+
+    if (!response?.error) {
+      updateEntityTrigger();
+      toast.success("Store updated.");
+    }
   } catch (error) {
     toast.error(error?.message);
   } finally {
@@ -144,7 +147,7 @@ const onSubmit = form.handleSubmit(async (values) => {
   <Separator />
   <ClientOnly>
     <ApiAlert
-      :title="useRuntimeConfig().public.appUrl"
+      title="GET"
       variant="public"
       :description="`${origin}/api/${route.params.storeId}`"
     />

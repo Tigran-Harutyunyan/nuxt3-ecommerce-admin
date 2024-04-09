@@ -14,12 +14,12 @@ const baseUrl = `${location.origin}/api/store/${route.params.storeId}`;
   <ApiAlert
     title="GET"
     variant="public"
-    :description="`${baseUrl}/${entityName}`"
+    :description="`${baseUrl}/site/${entityName}`"
   />
   <ApiAlert
     title="GET"
     variant="public"
-    :description="`${baseUrl}/${entityIdName}`"
+    :description="`${baseUrl}/site/${entityIdName}`"
   />
   <ApiAlert
     title="POST"
