@@ -47,7 +47,7 @@ export default defineStripeWebhook(async ({ event, stripeEvent }) => {
 
   switch (stripeEvent.type) {
     case 'checkout.session.completed': {
-      console.log('success!!!!!')
+
       const order = await prismadb.order.update({
         where: {
           id: session?.metadata?.orderId,
