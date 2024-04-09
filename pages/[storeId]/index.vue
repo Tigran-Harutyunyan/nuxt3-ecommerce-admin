@@ -11,11 +11,23 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 import { formatter } from "@/lib/utils";
 
-interface DashboardPageProps {
-  params: {
-    storeId: string;
-  };
-}
+const storeId = useRoute().params.storeId;
+
+const { data: graphRevenue } = await useAsyncData("graphRevenue", () =>
+  $fetch(`/api/store/${storeId}/dashboard/graph-revenue`)
+);
+
+const { data: salesCount } = await useAsyncData("salesCount", () =>
+  $fetch(`/api/store/${storeId}/dashboard/sales-count`)
+);
+
+const { data: stockCount } = await useAsyncData("stockCount", () =>
+  $fetch(`/api/store/${storeId}/dashboard/stock-count`)
+);
+
+const { data: totalRevenue } = await useAsyncData("totalRevenue", () =>
+  $fetch(`/api/store/${storeId}/dashboard/total-revenue`)
+);
 </script>
 
 <template>
@@ -33,7 +45,9 @@ interface DashboardPageProps {
             <DollarSign class="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <!-- <div class="text-2xl font-bold">{{formatter.format(totalRevenue)}}</div> -->
+            <div class="text-2xl font-bold">
+              {{ formatter.format(totalRevenue) }}
+            </div>
           </CardContent>
         </Card>
         <Card>
@@ -44,7 +58,7 @@ interface DashboardPageProps {
             <CreditCard class="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <!-- <div class="text-2xl font-bold">+{{salesCount}}</div> -->
+            <div class="text-2xl font-bold">+{{ salesCount }}</div>
           </CardContent>
         </Card>
         <Card>
@@ -55,7 +69,7 @@ interface DashboardPageProps {
             <Package class="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <!-- <div class="text-2xl font-bold">{{stockCount}}</div> -->
+            <div class="text-2xl font-bold">{{ stockCount }}</div>
           </CardContent>
         </Card>
       </div>
@@ -64,7 +78,7 @@ interface DashboardPageProps {
           <CardTitle>Overview</CardTitle>
         </CardHeader>
         <CardContent class="pl-2">
-          <!-- <Overview :data="graphRevenue" /> -->
+          <Overview :data="graphRevenue" />
         </CardContent>
       </Card>
     </div>
