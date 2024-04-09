@@ -5,7 +5,7 @@ definePageMeta({ middleware: "public" });
 </script>
 
 <template>
-  <div class="grid h-screen place-items-center">
+  <NuxtLayout name="auth">
     <SignUp sign-in-url="/sign-in" />
-  </div>
+  </NuxtLayout>
 </template>

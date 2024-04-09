@@ -1,17 +1,9 @@
 <script setup lang="ts">
-import { useClerkProvide } from "vue-clerk";
-
 definePageMeta({
   middleware: "auth",
 });
 
-const { derivedState } = useClerkProvide();
-
-if (!derivedState.value.userId) {
-  navigateTo("/sign-in");
-}
-
-const { data: store, pending } = await useFetch("/api/store");
+const { data: store, pending } = useFetch("/api/store");
 
 watch(
   () => pending.value,

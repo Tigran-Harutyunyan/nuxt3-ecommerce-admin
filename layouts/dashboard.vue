@@ -9,13 +9,13 @@ if (!derivedState.value.userId) {
   navigateTo("/sign-in");
 }
 
-const { data: store } = await useLazyAsyncData("store", () =>
-  $fetch(`/api/store/${route.params.storeId}`)
-);
+// const { data: store } = await useLazyAsyncData("store", () =>
+//   $fetch(`/api/store/${route.params.storeId}`)
+// );
 
-if (!store) {
-  navigateTo("/");
-}
+// if (!store.value) {
+//   navigateTo("/");
+// }
 </script>
 
 <template>
