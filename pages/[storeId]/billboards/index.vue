@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { format } from "date-fns";
-definePageMeta({
-  layout: "dashboard",
-});
-
 import { useMain } from "@/store/main";
 import BillboardClient from "@/components/billboards/Client.vue";
 import type { BillboardColumn } from "@/types";
+
+definePageMeta({
+  layout: "dashboard",
+  middleware: "auth",
+});
 
 const { entityUpdateTrigger } = storeToRefs(useMain());
 

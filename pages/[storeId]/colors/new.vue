@@ -3,6 +3,7 @@ import ColorForm from "@/components/colors/ColorForm.vue";
 
 definePageMeta({
   layout: "dashboard",
+  middleware: "auth",
 });
 </script>
 

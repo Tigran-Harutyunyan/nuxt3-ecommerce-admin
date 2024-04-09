@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { format } from "date-fns";
-definePageMeta({
-  layout: "dashboard",
-});
-
 import { useMain } from "@/store/main";
 import SizesClient from "@/components/sizes/Client.vue";
 import type { SizeColumn } from "@/types";
+
+definePageMeta({
+  layout: "dashboard",
+  middleware: "auth",
+});
 
 const { entityUpdateTrigger } = storeToRefs(useMain());
 

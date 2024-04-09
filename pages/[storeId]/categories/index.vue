@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { format } from "date-fns";
-definePageMeta({
-  layout: "dashboard",
-});
-
 import { useMain } from "@/store/main";
 import CategoriesClient from "@/components/categories/Client.vue";
 import type { CategoryColumn } from "@/types";
+
+definePageMeta({
+  layout: "dashboard",
+  middleware: "auth",
+});
 
 const { entityUpdateTrigger } = storeToRefs(useMain());
 

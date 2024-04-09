@@ -63,7 +63,7 @@ const handleUpload = (res: Response) => {
             <Trash class="h-4 w-4" />
           </Button>
         </div>
-        <NuxtImg fill class="object-cover" alt="Image" :src="url" />
+        <NuxtImg fill class="object-cover h-full" alt="Image" :src="url" />
       </div>
     </div>
 

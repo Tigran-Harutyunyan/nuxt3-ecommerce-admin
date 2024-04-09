@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import BillboardForm from "@/components/billboards/BillboardForm.vue";
+
 definePageMeta({
   layout: "dashboard",
+  middleware: "auth",
 });
 </script>
 

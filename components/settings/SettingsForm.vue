@@ -58,13 +58,17 @@ const onDelete = async () => {
   try {
     isLoading.value = true;
 
-    await await $fetch(`/api/stores/${route.params.storeId}`, {
+    const response = await $fetch(`/api/stores/${route.params.storeId}`, {
       method: "delete",
     });
 
-    updateEntityTrigger();
-    navigateTo("/");
-    toast.success("Store deleted.");
+    if (response?.error) {
+      toast.error("Something went wrong");
+    } else {
+      updateEntityTrigger();
+      navigateTo("/");
+      toast.success("Store deleted.");
+    }
   } catch (error: any) {
     toast.error("Make sure you removed all products and categories first.");
   } finally {
@@ -76,7 +80,7 @@ const onSubmit = form.handleSubmit(async (values) => {
   isLoading.value = true;
 
   try {
-    await $fetch(`/api/stores/${route.params.storeId}`, {
+    const response = await $fetch(`/api/stores/${route.params.storeId}`, {
       method: "put",
       body: {
         name: values.name,

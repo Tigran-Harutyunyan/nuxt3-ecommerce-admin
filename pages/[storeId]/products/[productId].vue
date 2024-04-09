@@ -5,6 +5,7 @@ const { sizes, colors, categories } = useProduct();
 
 definePageMeta({
   layout: "dashboard",
+  middleware: "auth",
 });
 
 const params = useRoute().params;

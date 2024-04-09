@@ -3,6 +3,7 @@ import CategoryForm from "@/components/categories/CategoryForm.vue";
 
 definePageMeta({
   layout: "dashboard",
+  middleware: "auth",
 });
 
 const route = useRoute();

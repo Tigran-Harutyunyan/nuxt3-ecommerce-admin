@@ -8,7 +8,6 @@ interface OrderClientProps {
 }
 
 const { data } = defineProps<OrderClientProps>();
-const query = useRoute();
 
 const columns: ColumnDef<OrderColumn>[] = [
   {

@@ -5,6 +5,7 @@ import { format } from "date-fns";
 
 definePageMeta({
   layout: "dashboard",
+  middleware: "auth",
 });
 
 const storeId = useRoute().params.storeId;
@@ -27,7 +28,7 @@ const { data: orders } = await useAsyncData(
             return total + Number(item.product.price);
           }, 0)
         ),
-        isPaid: item.isPaid,
+        isPaid: item.isPaid ? "yes" : "no",
         createdAt: format(item.createdAt, "MMMM do, yyyy"),
       }));
     },

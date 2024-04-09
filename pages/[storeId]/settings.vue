@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import SettingsForm from "@/components/settings/SettingsForm.vue";
 import type { Store } from "@/types";
+
 definePageMeta({
   layout: "dashboard",
+  middleware: "auth",
 });
 
 const route = useRoute();

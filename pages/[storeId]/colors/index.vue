@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { format } from "date-fns";
-definePageMeta({
-  layout: "dashboard",
-});
-
 import { useMain } from "@/store/main";
 import ColorClient from "@/components/colors/Client.vue";
 import type { ColorColumn } from "@/types";
+
+definePageMeta({
+  layout: "dashboard",
+  middleware: "auth",
+});
 
 const { entityUpdateTrigger } = storeToRefs(useMain());
 

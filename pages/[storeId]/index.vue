@@ -1,15 +1,14 @@
 <script setup lang="ts">
-definePageMeta({
-  layout: "dashboard",
-});
-
 import { CreditCard, DollarSign, Package } from "lucide-vue-next";
-
 import { Separator } from "@/components/ui/separator";
 import Overview from "@/components/dashboard/Overview.vue";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-
 import { formatter } from "@/lib/utils";
+
+definePageMeta({
+  layout: "dashboard",
+  middleware: "auth",
+});
 
 const storeId = useRoute().params.storeId;
 

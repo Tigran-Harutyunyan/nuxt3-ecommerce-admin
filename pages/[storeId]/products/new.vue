@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import ProductForm from "@/components/products/ProductForm.vue";
 import { useProduct } from "@/composables/useProduct";
+
 const { sizes, colors, categories } = useProduct();
 
 definePageMeta({
   layout: "dashboard",
+  middleware: "auth",
 });
 </script>
 

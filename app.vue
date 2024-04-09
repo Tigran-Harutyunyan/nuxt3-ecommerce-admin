@@ -4,7 +4,7 @@ import ModalsContainer from "@/components/modals/ModalsContainer.vue";
 import { ClerkLoaded } from "vue-clerk";
 </script>
 <template>
-  <NuxtLoadingIndicator color="#4ade80" :height="6" />
+  <NuxtLoadingIndicator color="#f87979" :height="6" />
 
   <ClerkLoaded>
     <NuxtLayout>

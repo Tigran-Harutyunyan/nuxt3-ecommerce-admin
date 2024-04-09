@@ -4,6 +4,7 @@ import type { Color } from "@prisma/client";
 
 definePageMeta({
   layout: "dashboard",
+  middleware: "auth",
 });
 
 const params = useRoute().params;

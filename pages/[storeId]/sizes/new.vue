@@ -3,6 +3,7 @@ import SizeForm from "@/components/sizes/SizeForm.vue";
 
 definePageMeta({
   layout: "dashboard",
+  middleware: "auth",
 });
 </script>
 

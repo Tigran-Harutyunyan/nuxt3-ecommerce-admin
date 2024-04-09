@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { format } from "date-fns";
-
-definePageMeta({
-  layout: "dashboard",
-});
-
 import { useMain } from "@/store/main";
 import ProductClient from "@/components/products/Client.vue";
 import type { Product } from "@/types";
 import { formatter } from "@/lib/utils";
+
+definePageMeta({
+  layout: "dashboard",
+  middleware: "auth",
+});
 
 const { entityUpdateTrigger } = storeToRefs(useMain());
 
