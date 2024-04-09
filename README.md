@@ -1,4 +1,4 @@
-# Full Stack E-Commerce + Dashboard & CMS: Nuxt.js 3, Vue, Tailwind, Prisma, MySQL
+# Full Stack E-Commerce + Dashboard & CMS: Nuxt 3, Vue, Tailwind, Prisma, MySQL
 
 [Live Demo - Site](https://nuxt3-ecommerce-store.vercel.app)
 
