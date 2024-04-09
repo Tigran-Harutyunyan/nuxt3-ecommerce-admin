@@ -5,55 +5,55 @@ const { className } = defineProps<{
   className: string;
 }>();
 
-const route = useRoute();
-
 const pathname = computed(() => {
   return useRoute().path;
 });
 
-const storeId = route.params.storeId;
+const storeId = computed(() => {
+  return useRoute().params.storeId;
+});
 
 const routes = computed(() => {
   return [
     {
-      href: `/${storeId}`,
+      href: `/${storeId.value}`,
       label: "Overview",
-      active: pathname.value === `/${storeId}`,
+      active: pathname.value === `/${storeId.value}`,
     },
     {
-      href: `/${storeId}/billboards`,
+      href: `/${storeId.value}/billboards`,
       label: "Billboards",
-      active: pathname.value === `/${storeId}/billboards`,
+      active: pathname.value === `/${storeId.value}/billboards`,
     },
     {
-      href: `/${storeId}/categories`,
+      href: `/${storeId.value}/categories`,
       label: "Categories",
-      active: pathname.value === `/${storeId}/categories`,
+      active: pathname.value === `/${storeId.value}/categories`,
     },
     {
-      href: `/${storeId}/sizes`,
+      href: `/${storeId.value}/sizes`,
       label: "Sizes",
-      active: pathname.value === `/${storeId}/sizes`,
+      active: pathname.value === `/${storeId.value}/sizes`,
     },
     {
-      href: `/${storeId}/colors`,
+      href: `/${storeId.value}/colors`,
       label: "Colors",
-      active: pathname.value === `/${storeId}/colors`,
+      active: pathname.value === `/${storeId.value}/colors`,
     },
     {
-      href: `/${storeId}/products`,
+      href: `/${storeId.value}/products`,
       label: "Products",
-      active: pathname.value === `/${storeId}/products`,
+      active: pathname.value === `/${storeId.value}/products`,
     },
     {
-      href: `/${storeId}/orders`,
+      href: `/${storeId.value}/orders`,
       label: "Orders",
-      active: pathname.value === `/${storeId}/orders`,
+      active: pathname.value === `/${storeId.value}/orders`,
     },
     {
-      href: `/${storeId}/settings`,
+      href: `/${storeId.value}/settings`,
       label: "Settings",
-      active: pathname.value === `/${storeId}/settings`,
+      active: pathname.value === `/${storeId.value}/settings`,
     },
   ];
 });
